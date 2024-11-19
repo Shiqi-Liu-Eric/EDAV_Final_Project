@@ -6,11 +6,11 @@ execute:
   echo: true
 
 book:
-  title: "YOUR PROJECT TITLE"
+  title: "Social Issue: Bicycle Thefts"
   author:
-    - AUTHOR1 (UNI1)
-    - AUTHOR2 (UNI2)
-  repo-url: https://github.com/YOUR_GITHUB_ACCOUNT/REPO_NAME
+    - Xinyan Li (xl3469)
+    - Shiqi Liu (sl5661)
+  repo-url: https://github.com/Shiqi-Liu-Eric/EDAV_Final_Project.git
   date: today
   page-footer:
     right: |
@@ -27,5 +27,3 @@ format:
   html:
     theme: cosmo
     code-fold: true
-
-
