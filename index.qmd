@@ -1,1 +1,5 @@
 # Introduction
+
+As international students, we are more concerned with whether our flights can get us to our destination on time, especially when we have a connecting flight. If the previous flight is delay, we may miss the next flight and the whole flight plan will be disrupted. This leads to stress and unnecessarily additional costs. That is why we choose to focus on the topic of flight delay problems in New York airports. This issue causes not only an inconvenience but also a significant barrier for people who rely heavily on flight time. 
+
+With that issue in mind, we raise a question: what factors determine if one flight can depart on time? Because of eather conditions, season differences, or security check? Exploring this issue and figuring out the factors behind are important for travelers to understand how airport work to support each punctual flight, particularly for international students and those who face tight flight schedules.
