@@ -6,7 +6,7 @@ execute:
   echo: true
 
 book:
-  title: "Social Issue: Bicycle Thefts"
+  title: "Social Issue: Flight Delay"
   author:
     - Xinyan Li (xl3469)
     - Shiqi Liu (sl5661)
@@ -25,5 +25,5 @@ book:
 
 format:
   html:
-    theme: cosmo
+    theme: minty
     code-fold: true

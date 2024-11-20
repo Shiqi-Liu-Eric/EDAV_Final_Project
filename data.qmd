@@ -1,5 +1,71 @@
 # Data
 
 ## Description
+Our first dataset about flight information is collected from the official website "United States Department of Transportation" with web url (this website also provides the description of column names): https://www.transtats.bts.gov/DL_SelectFields.aspx?gnoyr_VQ=FGJ&QO_fu146_anzr=b0-gvzr
+```{r}
+data_flight_202308 <- read.csv("../flight_NYC_2023_08.csv")
+data_flight_202312 <- read.csv("../flight_NYC_2023_12.csv")
+
+
+cat("Rows (202308):", nrow(data_flight_202308), "Columns (202308):", ncol(data_flight_202308), "\n")
+cat("Rows (202312):", nrow(data_flight_202312), "Columns (202312):", ncol(data_flight_202312), "\n")
+```
+
+Our second dataset about NYC weather is collected from "Visual Crossing", a website that provides historical and forecast weather data for analysis and visualization, with web url: https://www.visualcrossing.com/weather/weather-data-services#
+```{r}
+data_weather <- read.csv("../weather_NYC_2023.csv")
+head(data_weather)
+```
+
+For this project, we aim to analyze flight delays in New York City airports and their relationship with factors such as weather conditions, seasonal differences, and various flight companies. Our flight dataset is filtered to include flights originating or arriving in New York during August and December 2023. Correspondingly, the weather dataset covers the year 2023, with months filtered later for analysis. We chose August and December because they represent two distinct seasons with significant weather differences. These months often experience extreme weather conditions, such as heavy rain or snow, making them ideal for exploring the impact of weather on flight delays. The datasets are structured on a daily frequency. This means that while the weather data is collected daily, our analysis focuses only on the date of each flight, without considering specific hours. Key columns in the datasets include "icon" in the weather dataset, which indicates conditions like rain, snow, or cloudy skies, and "ARR_delay" in the flight dataset, which records the arrival delay in minutes (e.g., "-26," "13," or "0"). Each row in the flight dataset corresponds to information about a specific flight, while each row in the weather dataset represents the weather conditions for a particular day. To process the data, we extracted it into .csv files and imported them using the read_csv function for further analysis.
+
 
 ## Missing value analysis
+Since many columns in the data_flight dataset are not directly relevant to our objective, we have primarily selected and filtered columns based on the descriptions provided on the source website. 
+```{r}
+library(naniar)
+library(dplyr)
+cat("Columns:", paste(colnames(data_flight_202308), collapse = ", "), "\n")
+```
+
+
+```{r}
+data_flight_202308_filtered <- data_flight_202308 |>
+  select(YEAR, MONTH, DAY_OF_MONTH, FL_DATE, OP_UNIQUE_CARRIER, OP_CARRIER, 
+         TAIL_NUM, ORIGIN, DEST, DEP_TIME, DEP_DELAY, ARR_TIME, ARR_DELAY, 
+         CANCELLED, WEATHER_DELAY, AIR_TIME, DISTANCE)
+data_flight_202312_filtered <- data_flight_202312 |>
+  select(YEAR, MONTH, DAY_OF_MONTH, FL_DATE, OP_UNIQUE_CARRIER, OP_CARRIER, 
+         TAIL_NUM, ORIGIN, DEST, DEP_TIME, DEP_DELAY, ARR_TIME, ARR_DELAY, 
+         CANCELLED, WEATHER_DELAY, AIR_TIME, DISTANCE)
+
+missing_summary <- colSums(is.na(data_flight_202308_filtered))
+print("Missing Values per Column:")
+print(missing_summary)
+total_missing <- sum(is.na(data_flight_202308_filtered))
+cat("\nTotal Missing Values in Dataset:", total_missing, "\n")
+vis_miss(data_flight_202308_filtered, warn_large_data = FALSE)
+```
+
+```{r}
+missing_summary <- colSums(is.na(data_flight_202312_filtered))
+print("Missing Values per Column:")
+print(missing_summary)
+total_missing <- sum(is.na(data_flight_202312_filtered))
+cat("\nTotal Missing Values in Dataset:", total_missing, "\n")
+vis_miss(data_flight_202312_filtered, warn_large_data = FALSE)
+```
+
+From the plots and results above, we observe that most columns have either no missing values or very few (less than 2%). However, the WEATHER_DELAY column has approximately 80% missing values. This could be due to two main reasons: first, in practice, flight delays are often caused by air traffic control rather than weather conditions. Second, it is highly likely that most days in a month experience good weather, meaning only about 20% of flight delays are due to severe weather conditions.
+
+Interestingly, this fact of missing value adds more depth and possibilities to our research and exploration. The missing values in the WEATHER_DELAY column are not meaningless; rather, they indicate whether a delay was weather-related. This information allows us to better focus on understanding the impact of weather on flight delays, which aligns closely with our goals.
+
+```{r}
+missing_summary <- colSums(is.na(data_weather))
+print("Missing Values per Column:")
+print(missing_summary)
+total_missing <- sum(is.na(data_weather))
+cat("\nTotal Missing Values in Dataset:", total_missing, "\n")
+vis_miss(data_weather)
+```
+There is no missing value in "data_weather" dataset, so we don't need to handle the missing value problem for this dataset.
