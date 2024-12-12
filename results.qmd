@@ -12,9 +12,9 @@ library(ggmosaic)
 ```
 
 ```{r}
-data_flight_202308 <- read.csv("flight_NYC_2023_08.csv")
-data_flight_202312 <- read.csv("flight_NYC_2023_12.csv")
-data_weather <- read.csv("weather_NYC_2023.csv")
+data_flight_202308 <- read.csv("./flight_NYC_2023_08.csv")
+data_flight_202312 <- read.csv("./flight_NYC_2023_12.csv")
+data_weather <- read.csv("./weather_NYC_2023.csv")
 
 
 data_weather$datetime <- as.Date(data_weather$datetime, format = "%Y-%m-%d")
