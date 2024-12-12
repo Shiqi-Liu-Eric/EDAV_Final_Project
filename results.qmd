@@ -248,8 +248,8 @@ data_flight_202308_avg_delay <- data_flight_202308 |>
 ridgeline_plot_august <- ggplot(data_flight_202308_avg_delay, aes(x = avg_delay, y = ORIGIN, fill = ORIGIN)) +
   geom_density_ridges(alpha = 0.8, scale = 1.5) +
   labs(
-    title = "Distribution of Average Flight Delay Time by Origin (August)",
-    x = "Average Delay Time (minutes)",
+    title = "Distribution of Daily Flight Delay Time by Origin (August)",
+    x = "Daily Delay Time (minutes)",
     y = "Origin"
   ) +
   theme_ridges() +
@@ -264,8 +264,8 @@ data_flight_202312_avg_delay <- data_flight_202312 |>
 ridgeline_plot_december <- ggplot(data_flight_202312_avg_delay, aes(x = avg_delay, y = ORIGIN, fill = ORIGIN)) +
   geom_density_ridges(alpha = 0.8, scale = 1.5) +
   labs(
-    title = "Distribution of Average Flight Delay Time by Origin (December)",
-    x = "Average Delay Time (minutes)",
+    title = "Distribution of Daily Flight Delay Time by Origin (December)",
+    x = "Daily Delay Time (minutes)",
     y = "Origin"
   ) +
   theme_ridges() +
